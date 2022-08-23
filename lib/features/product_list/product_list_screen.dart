@@ -1,6 +1,7 @@
 import 'package:bp_question_2/features/product_list/ProductCard.dart';
-import 'package:bp_question_2/features/product_list/product_bottom_sheet.dart';
+import 'package:bp_question_2/features/product_list/product_detail_modal.dart';
 import 'package:bp_question_2/features/product_list/product_list_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -45,10 +46,14 @@ class ProductListScreen extends ConsumerWidget {
       itemCount: products.length,
       itemBuilder: (ctx, idx) => ProductCard(
         onPressed: () {
-          showModalBottomSheet(
+          // showModalBottomSheet(
+          //   context: context,
+          //   isScrollControlled: true,
+          //   builder: (ctx) => ProductBottomSheet(product: products[idx]),
+          // );
+          showDialog(
             context: context,
-            isScrollControlled: true,
-            builder: (ctx) => ProductBottomSheet(product: products[idx]),
+            builder: (ctx) => ProductModal(product: products[idx]),
           );
         },
         product: products.elementAt(idx),
